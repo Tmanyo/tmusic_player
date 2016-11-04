@@ -32,7 +32,13 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
      if formname == "tmusic_player:songs" then
           if fields.play then
                if music_playing ~= nil then
-                    return false
+                    music_playing = minetest.sound_stop(music_playing)
+                    if music_playing == nil then
+                         music_playing = minetest.sound_play("tmusic_player_" .. fields.song_to_play, {
+                              gain = 10,
+                              to_player = minetest.get_connected_players()
+                         })
+                    end
                else
                     music_playing = minetest.sound_play("tmusic_player_" .. fields.song_to_play, {
                          gain = 10,
@@ -50,7 +56,13 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
           if fields.loop_current then
                if minetest.setting_getbool("individual_loop") == true then
                     if music_playing ~= nil then
-                         return false
+                         music_playing = minetest.sound_stop(music_playing)
+                         if music_playing == nil then
+                              music_playing = minetest.sound_play("tmusic_player_" .. fields.song_to_play, {
+                                   gain = 10,
+                                   to_player = minetest.get_connected_players()
+                              })
+                         end
                     else
                          music_playing = minetest.sound_play("tmusic_player_" .. fields.song_to_play, {
                               gain = 10,
