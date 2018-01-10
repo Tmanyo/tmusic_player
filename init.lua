@@ -6,6 +6,8 @@ music_playing = nil
 
 local song = {}
 
+minetest.mkdir(minetest.get_modpath("tmusic_player") .. "/sounds")
+
 function music_list()
         music.list = minetest.get_dir_list(minetest.get_modpath("tmusic_player") ..
 	"/sounds", false)
