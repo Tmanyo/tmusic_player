@@ -92,17 +92,19 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
           	end
 		local event = minetest.explode_textlist_event(fields.song_list)
 		if event.type == "CHG" then
-			if music_playing ~= nil then
-				music_playing = minetest.sound_stop(
-				music_playing)
-			end
-			if music_playing == nil then
-				song = music.list[event.index]:gsub(
-				"%.ogg", "")
-				music_playing = minetest.sound_play(song, {
-				gain = 10,
-				to_player = minetest.get_connected_players()
-				})
+			if #music.list >= 1 then
+				if music_playing ~= nil then
+					music_playing = minetest.sound_stop(
+					music_playing)
+				end
+				if music_playing == nil then
+					song = music.list[event.index]:gsub(
+					"%.ogg", "")
+					music_playing = minetest.sound_play(song, {
+					gain = 10,
+					to_player = minetest.get_connected_players()
+					})
+				end
 			end
 		end
      	end
