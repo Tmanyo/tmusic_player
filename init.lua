@@ -58,8 +58,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
                               		music_playing = minetest.sound_play(
 					song, {
                                    	gain = 10,
-                                   	to_player =
-					minetest.get_connected_players(),
+                                   	to_player = minetest.get_connected_players(),
 					loop = true
                               		})
                          	end
