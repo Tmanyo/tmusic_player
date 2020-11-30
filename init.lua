@@ -58,8 +58,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
                               		music_playing = minetest.sound_play(
 					song, {
                                    	gain = 10,
-                                   	to_player =
-					minetest.get_connected_players(),
+                                   	to_player = player:get_player_name(),
 					loop = true
                               		})
                          	end
@@ -102,7 +101,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 					"%.ogg", "")
 					music_playing = minetest.sound_play(song, {
 					gain = 10,
-					to_player = minetest.get_connected_players()
+					to_player = player:get_player_name()
 					})
 				end
 			end
